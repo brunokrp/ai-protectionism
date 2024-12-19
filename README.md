@@ -1,4 +1,4 @@
-# **Artificial Intelligence Protectionism** <br/> **Distribution and prevalence across the world**
+# **Artificial Intelligence and Economic Protectionism:** <br/> **Distribution and prevalence across the world**
 By leveraging natural language processing tools, this project aims to understand the prevalence and distribution of nationalistic policies throughout the world. Using data from the Digital Policy Alert, it 
 
 ## **1) Artificial intelligence and economic nationalism**
