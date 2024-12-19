@@ -10,14 +10,14 @@ Both topics are now converging under the umbrella of the New Techno-nationalist 
 
 Thus, the convergence of artificial intelligence (AI) and economic nationalism represents a pivotal issue in public policy due to its transformative implications for global governance, trade, and technology. AI's rapid advancements demand coordinated regulation and investment to address ethical concerns, workforce displacement, and geopolitical competition. Simultaneously, the rise of economic nationalism challenges established trade norms, fostering protectionism and disrupting global supply chains. 
 
-### **1.1)Research Questions**
+### **1.1) Research Questions**
 This project's objective is to map the distribution of techno-nationalist AI policies across the world, identifying its main proponents. As such, the following are the research questions it aims to answer:
 
 1. Which terms are more present in AI policies?
 2. How are terms related to protectionist policies distributed among different regions? 
 3. Which regions have the highest percentage of protectionist policies?
 
-### **1.2)Significance and importance to public policy**
+### **1.2) Significance and importance to public policy**
 Answering these questions is essential for understanding how governments approach AI development and regulation, revealing global priorities and strategies. Analyzing the most common terms in policies can be effective in highlighting the foci of government action: whether it is innovation, regulation, or national security. The distribution of protectionist language across regions also shows how domestic interests are emphasized over international cooperation. Besides, identifying regions with the highest levels of protectionist measures uncovers patterns in economic strategies, shedding light on potential trade disputes and collaborations. These insights are vital for crafting policies that balance technological advancement, domestic priorities, and the need for global collaboration.
 
 ## **2) Methods**
@@ -59,10 +59,12 @@ As mentioned before, the DPA dataset has powerful features, but a crucial omissi
 
 #### **3.2.1) Data mining intervention descriptions**
 [The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
+
 The Global Trade Alert dataset available for download on the institution's website only provides short descriptions about each intervention, which are insufficient to train a model to identify its main labels. Because of that, a data mining script was developed to webscrape each intervention available at the GTA website and save it to a separate file, alongside the label (red, amber or green). 
 
 #### **3.2.2) Fine-tuning a distilBERT model**
 [The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
+
 Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, with an overall F-1 score of 0,98. The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were then utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
 
 ## **4) Results**
