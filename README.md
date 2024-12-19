@@ -1,4 +1,4 @@
-# MAPPING AI PROTECTIONISM ACROSS THE WORLD
+# Mapping AI protectionism around the world
 
 ## **Artificial intelligence and economic nationalism**
 There has been a perceptible uptick in global interest in two different, but complementary, topics: artificial intelligence (AI) and economic nationalism. 
