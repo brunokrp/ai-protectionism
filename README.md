@@ -1,4 +1,5 @@
-# **Protectionism and the "AI Arms Race":** <br/> **Using Large Language Models to Map the Distribution and Prevalence of Protectionist Economic Policies for the AI Sector**
+# **Protectionism and the "AI Arms Race":**
+## **Using Large Language Models to Map the Distribution and Prevalence of Protectionist Economic Policies for the AI Sector**
 
 ## **1) Introduction**
 There has been a perceptible uptick in global interest in two different, but complementary, topics: artificial intelligence (AI) and economic nationalism. AI has been, during the past few years, one of the most discussed technologies in the world. From the 2010’s novel applications of deep and reinforcement learning to the recent innovation brought forth by large language models (GPT and other transformer architectures), the world’s eyes are paying close attention to the development of this technology. Not only are markets deploying valuable resources to develop and adopt it, but governments have also taken considerable efforts to regulate and foster the artificial intelligence environment - semiconductors, data infrastructure, machine learning models, and its applications - foreseeing the potential risks and gains of such a ubiquitous technology. 
