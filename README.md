@@ -1,4 +1,4 @@
-# **Artificial Intelligence and Economic Nationalism:** <br/> **Distribution and Prevalence Across the World**
+# **Protectionism and the "AI Arms Race":** <br/> **Using Large Language Models to Map the Distribution and Prevalence of Protectionist Economic Policies for the AI Sector**
 
 ## **1) Introduction**
 There has been a perceptible uptick in global interest in two different, but complementary, topics: artificial intelligence (AI) and economic nationalism. AI has been, during the past few years, one of the most discussed technologies in the world. From the 2010’s novel applications of deep and reinforcement learning to the recent innovation brought forth by large language models (GPT and other transformer architectures), the world’s eyes are paying close attention to the development of this technology. Not only are markets deploying valuable resources to develop and adopt it, but governments have also taken considerable efforts to regulate and foster the artificial intelligence environment - semiconductors, data infrastructure, machine learning models, and its applications - foreseeing the potential risks and gains of such a ubiquitous technology. 
@@ -13,8 +13,9 @@ Thus, the convergence of artificial intelligence (AI) and economic nationalism r
 This project's objective is to map the distribution of techno-nationalist AI policies across the world, identifying its main proponents. As such, the following are the research questions it aims to answer:
 
 1. Which terms are more present in AI policies?
-2. How are terms related to protectionist policies distributed among different regions? 
-3. Which regions have the highest percentage of protectionist policies?
+2. How are terms related to protectionist policies distributed among different actors? 
+3. Where are protectionist policies deployed the most?
+4. What are the main policy instruments used to express protectionism?
 
 ### **1.2) Significance and importance to public policy**
 Answering these questions is essential for understanding how governments approach AI, revealing global priorities and strategies. Analyzing the most common terms in policies can be effective in highlighting the foci of government action: whether it is innovation, regulation, or national security. The distribution of protectionist language across regions also shows how domestic interests are emphasized over international cooperation. Besides, identifying regions with the highest levels of protectionist measures uncovers patterns in economic strategies, shedding light on potential trade disputes and collaborations. These insights are vital for crafting policies that balance technological advancement, domestic priorities, and the need for global collaboration.
@@ -66,8 +67,11 @@ The Global Trade Alert dataset available for download on the institution's websi
 
 Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, with an overall F-1 score of 0,98 on the test dataset. The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
 
-## **4) Results**
-### **4.1) TF-IDF and Topic Modeling**
+## **4) Clustering countries according to their political and economic contexts**
+
+
+## **5) Results**
+### **5.1) TF-IDF and Topic Modeling**
 The TF-IDF analysis in Image 1 revealed that regions like Eastern Asia, Southern Asia, Southern Europe, and Western Europe had "competition" as their top TF-IDF term. For North America, it was in the second position, losing only for "research". It is also interesting to notice that the top TF-IDF term for Middle and Southern Africa was China - which suggests growing mentions of Chinese action in the region - and that the continent was the only one with "cooperation" as one of their top 10 terms.
 ![Image 1](tf-idf.png)
 
@@ -86,7 +90,7 @@ Their distribution through regions follows the heatmap below:
 
 Topics 4 and 6 were the most prevalent among all regions, which shows the dual nature of AI - it is a major tool for economic development but poses risks that must be addressed by society. Topic 2 is the only one with close ties to protectionism, and its distribution among regions suggests that those concerns are more present in Europe. It is important to note, though, that topic 2 does not necessarily reflect protectionism, as the terms "competition", "trade", and "market" can also be used in liberalizing ways.
 
-### **4.1) Classification model**
+### **5.1) Classification model**
 SHAP values were used to enhance model explainability and derive whether the policies picked up as protectionist by the model were so indeed. Here are two examples of protectionist policies labeled as so by the model, alongside a SHAP plot that reveals which words affected the classification. While neither explicitly mentions "competition" - and would not have been picked up by the previous analyses - the model identified other contextual clues that signaled protectionism, such as "export control", "safeguarding national security" and "merger control".
 
 ![image](shap-values.png)
@@ -115,7 +119,7 @@ The overall level of protectionism for the sector ranges between 17 to 14% of al
 ## Conclusions and next steps
 The convergence of artificial intelligence and economic nationalism signals a transformative trend in global governance, trade, and technological development. This project’s analysis, leveraging natural language processing techniques and advanced classification models, has provided nuanced insights into how protectionist rhetoric and measures are embedded within AI policy frameworks worldwide. The results reveal regional variation in the prevalence of protectionist policies, with Western, Eastern and Southern Asia emerging as the most protectionist, while regions like South America and Africa showed minimal engagement with such measures.
 
-Further research is necessary to expand the model devised here. Three possible approaches would be to include country-level analyses, time series analyses, and other correlational assessments, such as investigating the correlation between the maturity of the AI sector in a country and its level of protectionism. Regarding the model itself, it would be crucial to pursue higher levels of robustness; one option would be to invert what was done in section 3.2. Instead of using the GTA dataset to infer which policy is protectionist, one could use the DPA dataset to infer whether a policy is related to the AI sector, and then deploy it to identify which policies are related to the sector in the GTA dataset. However, n important limitation is this approach is that it does not quantify the intensity of the protectionist policy adopted: whether it is a 100% tariff or a 5% tariff on a certain product, it still counts as the same. 
+Further research is necessary to expand the model devised here. Three possible approaches would be to include country-level analyses, time series analyses, and other correlational assessments, such as investigating the correlation between the maturity of the AI sector in a country and its level of protectionism. Regarding the model itself, it would be crucial to pursue higher levels of robustness; one option would be to invert what was done in section 3.2. Instead of using the GTA dataset to infer which policy is protectionist, one could use the DPA dataset to infer whether a policy is related to the AI sector, and then deploy it to identify which policies are related to the sector in the GTA dataset. However, an important limitation for this approach is that it does not quantify the intensity of the protectionist policy adopted: whether it is a 100% tariff or a 5% tariff on a certain product, it still counts as the same. 
 
 There is still a lot to be done to advance this agenda, but the findings here already highlight important facts. First, it shows that policy struggles with AI policy's dual nature: as a tool for economic development and innovation and as a source of geopolitical and economic tension. It also demonstrates that terms like "competition" appear as weak indicators of protectionism and that more robust models can classify policies based on contextual cues, offering a more robust understanding of the strategies employed by governments. And finally, it showcases a clear picture of tech-driven protectionism, which should be further studied.
 
