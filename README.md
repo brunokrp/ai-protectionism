@@ -54,7 +54,7 @@ TF-IDF (Term Frequency-Inverse Document Frequency) is a statistical tool that he
 #### **3.1.2) Topic Modeling**
 Applying topic modeling to AI policy texts can reveal topics reflecting economic protectionism, like “domestic industry support” or “technology transfer restrictions.” By analyzing these topics, this paper aims to identify recurring concerns, such as safeguarding national AI capabilities or reducing reliance on foreign technology. Topic modeling also enables cross-region comparisons, highlighting differences in protectionist rhetoric. 
 
-### **3.2) Identifying protectionist AI policies**
+### **3.2) Identifying protectionist AI policies using large language models**
 As mentioned before, the DPA dataset has powerful features, but a crucial omission: it does not categorize interventions according to their level of protectionism. As such, the GTA dataset was used in order to fill in this missing information. To accurately identify the protectionist AI policies present in the DPA dataset, this project developed a custom text classification model fine-tuned on a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model. The next two subsections describe this process in detail.
 
 #### **3.2.1) Data mining intervention descriptions**
