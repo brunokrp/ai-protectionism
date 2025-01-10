@@ -15,7 +15,8 @@ This project's objective is to map the distribution of techno-nationalist AI pol
 1. Which terms are more present in AI policies?
 2. How are terms related to protectionist policies distributed among different actors? 
 3. Where are protectionist policies deployed the most?
-4. What are the main policy instruments used to express protectionism?
+4. What are the main policy instruments used to express protectionism across the world?
+5. Do countries with different institutional contexts or from different regions express AI protectionism differently?
 
 ### **1.2) Significance and importance to public policy**
 Answering these questions is essential for understanding how governments approach AI, revealing global priorities and strategies. Analyzing the most common terms in policies can be effective in highlighting the foci of government action: whether it is innovation, regulation, or national security. The distribution of protectionist language across regions also shows how domestic interests are emphasized over international cooperation. Besides, identifying regions with the highest levels of protectionist measures uncovers patterns in economic strategies, shedding light on potential trade disputes and collaborations. These insights are vital for crafting policies that balance technological advancement, domestic priorities, and the need for global collaboration.
