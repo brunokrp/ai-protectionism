@@ -20,7 +20,7 @@ This project's objective is to map the distribution of techno-nationalist AI pol
 ### **1.2) Significance and importance to public policy**
 Answering these questions is essential for understanding how governments approach AI, revealing global priorities and strategies. Analyzing the most common terms in policies can be effective in highlighting the foci of government action: whether it is innovation, regulation, or national security. The distribution of protectionist language across regions also shows how domestic interests are emphasized over international cooperation. Besides, identifying regions with the highest levels of protectionist measures uncovers patterns in economic strategies, shedding light on potential trade disputes and collaborations. These insights are vital for crafting policies that balance technological advancement, domestic priorities, and the need for global collaboration.
 
-## **2) Methods**
+## **2) Data**
 ### **2.1) Data sources**
 #### **2.1.1) Global Trade Alert (GTA)**
 The Global Trade Alert is a database that organizes information regarding governmental changes to market conditions. It first started in 2008 and has since managed to store more than 70,000 governmental interventions. One of its key features is the categorization of each intervention according to the direction of the induced change: liberalizing or harmful toward foreign interests. 
@@ -42,33 +42,9 @@ For the scope of this project, we will analyze only interventions that affect th
 #### **2.1.3) Limitations from the datasets**
 Each dataset presents specific shortcomings that limit our ability to rely completely upon only one of them to answer our questions. On one hand, the GTA provides a clear categorization of policies according to their protectionist level, but does not separate them according to economic activity: since it is not focused on specific economic activities, one cannot reliably find which interventions are related to the artificial intelligence sector. On the other hand, the DPA provides a clear definition of economic activity and is focused on policies pertaining to the digital world, but does not classify each of its interventions according to their protectionist level. As such, this project had to find a way to use information present in one dataset to infer missing data on the other. Section 3.2 will touch on this matter and propose a novel way to incorporate missing information on the DPA database.
 
-## **3) Identifying protectionist policies through text analysis**
-The first part of the project uses tools such as TF-IDF and Topic modeling to understand the patterns used in AI policy texts more broadly. Then, a text classification model was developed to identify specific protectionist AI policies. 
-
-### **3.1) Exploratory analysis: Finding patterns in AI policy**
-[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/exploratory_analysis.ipynb)
-
-#### **3.1.1) TF-IDF**
-TF-IDF (Term Frequency-Inverse Document Frequency) is a statistical tool that helps identify significant terms in a text corpus by balancing word frequency within a document and uniqueness across documents. In analyzing the descriptions of government interventions in the AI sector, TF-IDF could highlight terms associated with economic protectionism. I expect to find terms such as “tariffs,” “domestic prioritization,” or “export controls.” By comparing policy documents across countries, patterns can emerge, revealing recurring language tied to protecting local AI industries or limiting international competition. These patterns can provide valuable insights both into the economic motivations underlying AI policy decisions and the players that most commonly use such policies.
-
-#### **3.1.2) Topic Modeling**
-Applying topic modeling to AI policy texts can reveal topics reflecting economic protectionism, like “domestic industry support” or “technology transfer restrictions.” By analyzing these topics, this paper aims to identify recurring concerns, such as safeguarding national AI capabilities or reducing reliance on foreign technology. Topic modeling also enables cross-region comparisons, highlighting differences in protectionist rhetoric. 
-
-### **3.2) Identifying protectionist AI policies using large language models**
-As mentioned before, the DPA dataset has powerful features, but a crucial omission: it does not categorize interventions according to their level of protectionism. As such, the GTA dataset was used in order to fill in this missing information. To accurately identify the protectionist AI policies present in the DPA dataset, this project developed a custom text classification model fine-tuned on a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model. The next two subsections describe this process in detail.
-
-#### **3.2.1) Data mining intervention descriptions**
-[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
-
-The Global Trade Alert dataset available for download on the institution's website only provides short descriptions about each intervention, which are insufficient to train a supervised learning model. Because of that, a data mining script was developed to web scrape each intervention available at the GTA website and save it to a separate file, alongside the label (red, amber, or green). 
-
-#### **3.2.2) Fine-tuning a distilBERT model**
-[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
-
-Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, with an overall F-1 score of 0,98 on the test dataset. The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
-
-## **4) Clustering countries according to their political and economic contexts**
-A country has at its disposal a variety of policy instruments to incentivize local development, reduce foreign influence and regulate the internal use of technology. The industrial policy literature has mapped an extensive list of policies that can be used to target the transformation of the structure of economic activity in pursuit of some goal, encompassing domains such as “selective industry support”, “economic signals and incentives” and “distribution of information”. 
+## **3) Clustering countries according to their institutional contexts**
+[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/ai_clustering.ipynb)
+A country has at its disposal a variety of policy instruments to incentivize local development, reduce foreign influence, and regulate the internal use of technology. The industrial policy literature has mapped an extensive list of policies that can be used to target the transformation of the structure of economic activity in pursuit of some goal, encompassing domains such as “selective industry support”, “economic signals and incentives” and “distribution of information”. 
 
 As with public policy in general, the use of those instruments is largely dependent on the institutional context of the state deploying them, and should be developed and deployed as a reflection of a country’s political, economic and technological environments. It is also expected that different instruments should be used with specific goals in mind. For countries at a technology’s frontier, for example, investment in public R&D, protection of intellectual property laws and international cooperation are better tools. For countries trying to catch-up, tax incentives, international mobility and adoption incentives should better fit their situation.
 
@@ -81,7 +57,32 @@ Since the position of a country in the “AI race” should influence the polici
 5. The level of fiscal restriction - General government debt (% of GDP), IMF, 2023
 6. The level of national investment - Gross capital formation (% of GDP), World Bank, 2023
 
-By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow method to define the optimal number of clusters, five main clusters were found, which are highlighted below.
+By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow method to define the optimal number of clusters, five main clusters were found, which are highlighted below. All following analyses will use both clusters and geographic regions to group similar countries. 
+
+## **4) Identifying protectionist policies through text analysis**
+The first part of the project uses tools such as TF-IDF and Topic modeling to understand the patterns used in AI policy texts more broadly. Then, a text classification model was developed to identify specific protectionist AI policies. 
+
+### **4.1) Exploratory analysis: Finding patterns in AI policy**
+[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/exploratory_analysis.ipynb)
+
+#### **4.1.1) TF-IDF**
+TF-IDF (Term Frequency-Inverse Document Frequency) is a statistical tool that helps identify significant terms in a text corpus by balancing word frequency within a document and uniqueness across documents. In analyzing the descriptions of government interventions in the AI sector, TF-IDF could highlight terms associated with economic protectionism. I expect to find terms such as “tariffs,” “domestic prioritization,” or “export controls.” By comparing policy documents across countries, patterns can emerge, revealing recurring language tied to protecting local AI industries or limiting international competition. These patterns can provide valuable insights both into the economic motivations underlying AI policy decisions and the players that most commonly use such policies.
+
+#### **4.1.2) Topic Modeling**
+Applying topic modeling to AI policy texts can reveal topics reflecting economic protectionism, like “domestic industry support” or “technology transfer restrictions.” By analyzing these topics, this paper aims to identify recurring concerns, such as safeguarding national AI capabilities or reducing reliance on foreign technology. Topic modeling also enables cross-region comparisons, highlighting differences in protectionist rhetoric. 
+
+### **4.2) Identifying protectionist AI policies using large language models**
+As mentioned before, the DPA dataset has powerful features, but a crucial omission: it does not categorize interventions according to their level of protectionism. As such, the GTA dataset was used in order to fill in this missing information. To accurately identify the protectionist AI policies present in the DPA dataset, this project developed a custom text classification model fine-tuned on a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model. The next two subsections describe this process in detail.
+
+#### **4.2.1) Data mining intervention descriptions**
+[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
+
+The Global Trade Alert dataset available for download on the institution's website only provides short descriptions about each intervention, which are insufficient to train a supervised learning model. Because of that, a data mining script was developed to web scrape each intervention available at the GTA website and save it to a separate file, alongside the label (red, amber, or green). 
+
+#### **4.2.2) Fine-tuning a distilBERT model**
+[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
+
+Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, with an overall F-1 score of 0,98 on the test dataset. The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
 
 ## **5) Results**
 ### **5.1) TF-IDF and Topic Modeling**
