@@ -136,18 +136,18 @@ The model was then applied to classify AI-related policy measures sourced from t
 ![Image 1](image/dpa_pred_example_protec_2.png)
 ![Image 1](image/dpa_pred_example_protec_3.png)
 
-### **5.2) Where are protectionist policies deployed the most? 
-#### **5.2.1) By geographic region
-![Image 1](image/protec_policies_regions.png)
+### **5.2) Where are protectionist policies deployed the most?** 
+#### **5.2.1) By geographic region**
+![Image 1](image/protec_policies_region.png)
 
-#### **5.2.2) By cluster
+#### **5.2.2) By cluster**
 ![Image 1](image/protec_policies_cluster.png)
 
-### **5.3) What are the main policy instruments used to express AI protectionism across the world?
-#### **5.2.1) By policy area
+### **5.3) What are the main policy instruments used to express AI protectionism across the world?**
+#### **5.2.1) By policy area**
 ![Image 1](image/protec_policies_area.png)
 
-#### **5.2.2) By policy instrument
+#### **5.2.2) By policy instrument**
 ![Image 1](image/protec_policies_instrument.png)
 
 ## Conclusions and next steps 
