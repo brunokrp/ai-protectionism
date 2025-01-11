@@ -100,17 +100,16 @@ Inspired by the approach taken by Juhász[2], policy texts labeled as protection
 ![Image 1](image/model_confusion_matrix.png)
 
 Besides, we also deployed SHAP values to analyze the model output for the test dataset. The following are examples of policies labeled by the model. The predicted label is highlighted in the top (Label 0: Non-protectionist, Label 1: Protectionist). The red terms are the most related to the predicted label:
-![Image 1](image/gta_pred_example_protec_1.png)
-![Image 1](image/gta_pred_example_protec_2.png)
-![Image 1](image/gta_pred_example_protec_3.png)
-![Image 1](image/gta_pred_example_protec_4.png)
+![](image/gta_pred_example_protec_1.png)
+![](image/gta_pred_example_protec_2.png)
+![](image/gta_pred_example_protec_3.png)
+![](image/gta_pred_example_protec_4.png)
 
 ## **5) Results**
 ### **5.1) TF-IDF and Topic Modeling**
 The TF-IDF analysis in the images below reveal that regions like Eastern Asia, Southern Asia, Southern Europe, and Western Europe had "competition" as their top TF-IDF term. For North America, it was in the second position, losing only for "research". It is also interesting to notice that the top TF-IDF term for Middle and Southern Africa was China - which suggests growing mentions of Chinese action in the region - and that the continent was the only one with "cooperation" as one of their top 10 terms.
-![Image 1](image/tf_idf_region.png)
-
-![Image 1](image/tf_idf_cluster.png)
+![](image/tf_idf_region.png)
+![](image/tf_idf_cluster.png)
 
 The topic modeling approach revealed 8 main topics:
 - 🥷 Topic 1: Data protection - data protection personal information processing authority training privacy user consent
@@ -123,32 +122,32 @@ The topic modeling approach revealed 8 main topics:
 - 🗨️ Topic 8: Content generation - content platform generative generate medium online copyright work digital image
 
 Their distribution through regions follows the heatmap below:
-![Image 1](image/topic_region.png)
+![](image/topic_region.png)
 
 Topics 4 and 6 were the most prevalent among all regions, which shows the dual nature of AI - it is a major tool for economic development but poses risks that must be addressed by society. Topic 2 is the only one with close ties to protectionism, and its distribution among regions suggests that those concerns are more present in Europe. It is important to note, though, that topic 2 does not necessarily reflect protectionism, as the terms "competition", "trade", and "market" can also be used in liberalizing ways.
 
 Their distribution through clusters follows the heatmap below:
-![Image 1](image/topic_cluster.png)
+![](image/topic_cluster.png)
 
 ### **5.1) Classification model performance for the DPA dataset** 
 The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications.
-![Image 1](image/dpa_pred_example_protec_1.png)
-![Image 1](image/dpa_pred_example_protec_2.png)
-![Image 1](image/dpa_pred_example_protec_3.png)
+![](image/dpa_pred_example_protec_1.png)
+![](image/dpa_pred_example_protec_2.png)
+![](image/dpa_pred_example_protec_3.png)
 
 ### **5.2) Where are protectionist policies deployed the most?** 
 #### **5.2.1) By geographic region**
-![Image 1](image/protec_policies_region.png)
+![](image/protec_policies_region.png)
 
 #### **5.2.2) By cluster**
-![Image 1](image/protec_policies_cluster.png)
+![](image/protec_policies_cluster.png)
 
 ### **5.3) What are the main policy instruments used to express AI protectionism across the world?**
 #### **5.2.1) By policy area**
-![Image 1](image/protec_policies_area.png)
+![](image/protec_policies_area.png)
 
 #### **5.2.2) By policy instrument**
-![Image 1](image/protec_policies_instrument.png)
+![](image/protec_policies_instrument.png)
 
 ## Conclusions and next steps 
 The convergence of artificial intelligence and economic nationalism signals a transformative trend in global governance, trade, and technological development. This project’s analysis, leveraging natural language processing techniques and advanced classification models, has provided nuanced insights into how protectionist rhetoric and measures are embedded within AI policy frameworks worldwide. The results reveal regional variation in the prevalence of protectionist policies, with Western, Eastern and Southern Asia emerging as the most protectionist, while regions like South America and Africa showed minimal engagement with such measures.
