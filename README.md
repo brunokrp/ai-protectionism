@@ -61,8 +61,9 @@ Since the position of a country in the “AI race” should influence the polici
 6. The level of national investment - Gross capital formation (% of GDP), World Bank, 2023
 
 By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow and silhouette methods to define the optimal number of clusters, five main clusters were found, which are highlighted below: 
+![Image 1](clusters.png)
 
-All following analyses will use both clusters and geographic regions to group similar countries. 
+The cluster analysis excluded the US, China and India, because their inclusion created unwanted distortions. A separate cluster were created for each country, so the following analyses contain 8 clusters. Besides, all following analyses will also use geographic regions to group similar countries. 
 
 ## **4) Identifying protectionist policies through text analysis**
 The first part of the project uses tools such as TF-IDF and Topic modeling to understand the patterns used in AI policy texts more broadly. Then, a text classification model was developed to identify specific protectionist AI policies. 
@@ -85,12 +86,13 @@ As mentioned before, the DPA dataset has powerful features, but a crucial omissi
 The Global Trade Alert dataset available for download on the institution's website only provides short descriptions about each intervention, which are insufficient to train a supervised learning model. Because of that, a data mining script was developed to web scrape each intervention available at the GTA website and save it to a separate file, alongside the label (red, amber, or green). 
 
 #### **4.2.2) Fine-tuning a distilBERT model**
-[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
+[The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_training.ipynb)
 
 Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, achieving the following classification metrics: 
 [ENTER CONFUSION MATRIX HERE]
 
-The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
+Besides, we also deployed SHAP values to analyze the model output for the test dataset. The following are examples of policies labeled as "protectionist", with red terms being the ones most related to protectionism:
+[ENTER EXAMPLES HERE]
 
 ## **5) Results**
 ### **5.1) TF-IDF and Topic Modeling**
@@ -112,31 +114,21 @@ Their distribution through regions follows the heatmap below:
 
 Topics 4 and 6 were the most prevalent among all regions, which shows the dual nature of AI - it is a major tool for economic development but poses risks that must be addressed by society. Topic 2 is the only one with close ties to protectionism, and its distribution among regions suggests that those concerns are more present in Europe. It is important to note, though, that topic 2 does not necessarily reflect protectionism, as the terms "competition", "trade", and "market" can also be used in liberalizing ways.
 
-### **5.1) Classification model**
-SHAP values were used to enhance model explainability and derive whether the policies picked up as protectionist by the model were so indeed. Here are two examples of protectionist policies labeled as so by the model, alongside a SHAP plot that reveals which words affected the classification. While neither explicitly mentions "competition" - and would not have been picked up by the previous analyses - the model identified other contextual clues that signaled protectionism, such as "export control", "safeguarding national security" and "merger control".
+### **5.1) Classification model performance for the DPA dataset**
+The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Here are two examples of protectionist policies labeled as so by the model, alongside a SHAP plot that reveals which words affected the classification. While neither explicitly mentions "competition" - and would not have been picked up by the previous analyses - the model identified other contextual clues that signaled protectionism, such as "export control", "safeguarding national security" and "merger control".
 
 ![image](shap-values.png)
 
-Finally, when expanding the predictions to the whole dataset, the distribution of protectionist policies found by the model is the following:
+### **5.2) Where are protectionist policies deployed the most?
+#### **5.2.1) By geographic region
 
-| Region               | % of Policies Classified as Protectionist | # of Policies |
-|----------------------|-------------------------------------------|---------------|
-| Western Asia         | 18.95%                                   | 153           |
-| Western Europe       | 18.83%                                   | 223           |
-| Eastern Asia         | 18.54%                                   | 178           |
-| Southern Asia        | 18.52%                                   | 27            |
-| Northern Europe      | 17.01%                                   | 147           |
-| Southern Europe      | 16.77%                                   | 161           |
-| Eastern Europe       | 16.18%                                   | 136           |
-| Northern America     | 14.89%                                   | 356           |
-| Central America      | 14.29%                                   | 28            |
-| South-eastern Asia   | 13.92%                                   | 79            |
-| Caribbean            | 12.50%                                   | 8             |
-| South America        | 8.14%                                    | 86            |
-| Others               | 0.00%                                    | 77            |
+#### **5.2.2) By cluster
 
+### **5.3) What are the main policy instruments used to express AI protectionism across the world?
+#### **5.2.1) By policy area
 
-The overall level of protectionism for the sector ranges between 17 to 14% of all policies announced. Besides, the aggregated results reveal regional patterns of AI protectionism: Western, Eastern, and Southern Asia emerged as leaders in protectionist policies, with Europe trailing closely behind. South America ranked lowest among countries that deploy protectionism measures, while Africa had no policies classified as protectionist. 
+#### **5.2.2) By policy instrument
+
 
 ## Conclusions and next steps
 The convergence of artificial intelligence and economic nationalism signals a transformative trend in global governance, trade, and technological development. This project’s analysis, leveraging natural language processing techniques and advanced classification models, has provided nuanced insights into how protectionist rhetoric and measures are embedded within AI policy frameworks worldwide. The results reveal regional variation in the prevalence of protectionist policies, with Western, Eastern and Southern Asia emerging as the most protectionist, while regions like South America and Africa showed minimal engagement with such measures.
