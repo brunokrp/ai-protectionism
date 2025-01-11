@@ -72,7 +72,6 @@ By using those six main indicators, it is possible to group similar countries. U
 | 5       | 🇮🇳 India                                                                                                                                                       |
 | 6       | 🇨🇳 China                                                                                                                                                       |
 | 7       | 🇺🇸 United States                                                                                                                                               |
-                                                                                   |
 
 ## **4) Identifying protectionist policies through text analysis**
 The first part of the project uses tools such as TF-IDF and Topic modeling to understand the patterns used in AI policy texts more broadly. Then, a text classification model was developed to identify specific protectionist AI policies. 
@@ -87,7 +86,7 @@ TF-IDF (Term Frequency-Inverse Document Frequency) is a statistical tool that he
 Applying topic modeling to AI policy texts can reveal topics reflecting economic protectionism, like “domestic industry support” or “technology transfer restrictions.” By analyzing these topics, this paper aims to identify recurring concerns, such as safeguarding national AI capabilities or reducing reliance on foreign technology. Topic modeling also enables cross-region comparisons, highlighting differences in protectionist rhetoric. 
 
 ### **4.2) Identifying protectionist AI policies using large language models**
-As mentioned before, the DPA dataset has powerful features, but a crucial omission: it does not categorize interventions according to their level of protectionism. As such, the GTA dataset was used in order to fill in this missing information. To accurately identify the protectionist AI policies present in the DPA dataset, this project developed a custom text classification model fine-tuned on a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model. The next two subsections describe this process in detail.
+As mentioned before, the DPA dataset has powerful features, but a crucial omission: it does not categorize interventions according to their level of protectionism. As such, the GTA dataset was used to fill in this missing information. To accurately identify the protectionist AI policies present in the DPA dataset, this project developed a custom text classification model fine-tuned on a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model. The next two subsections describe this process in detail.
 
 #### **4.2.1) Data mining intervention descriptions**
 [The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
@@ -131,23 +130,27 @@ Topics 4 and 6 were the most prevalent among all regions, which shows the dual n
 Their distribution through clusters follows the heatmap below:
 ![Image 1](image/topic_cluster.png)
 
-### **5.1) Classification model performance for the DPA dataset**
-The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Here are two examples of protectionist policies labeled as so by the model, alongside a SHAP plot that reveals which words affected the classification. While neither explicitly mentions "competition" - and would not have been picked up by the previous analyses - the model identified other contextual clues that signaled protectionism, such as "export control", "safeguarding national security" and "merger control".
+### **5.1) Classification model performance for the DPA dataset** 
+The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications.
+![Image 1](image/dpa_pred_example_protec_1.png)
+![Image 1](image/dpa_pred_example_protec_2.png)
+![Image 1](image/dpa_pred_example_protec_3.png)
 
-![image](shap-values.png)
-
-### **5.2) Where are protectionist policies deployed the most?
+### **5.2) Where are protectionist policies deployed the most? 
 #### **5.2.1) By geographic region
+![Image 1](image/protec_policies_regions.png)
 
 #### **5.2.2) By cluster
+![Image 1](image/protec_policies_cluster.png)
 
 ### **5.3) What are the main policy instruments used to express AI protectionism across the world?
 #### **5.2.1) By policy area
+![Image 1](image/protec_policies_area.png)
 
 #### **5.2.2) By policy instrument
+![Image 1](image/protec_policies_instrument.png)
 
-
-## Conclusions and next steps
+## Conclusions and next steps 
 The convergence of artificial intelligence and economic nationalism signals a transformative trend in global governance, trade, and technological development. This project’s analysis, leveraging natural language processing techniques and advanced classification models, has provided nuanced insights into how protectionist rhetoric and measures are embedded within AI policy frameworks worldwide. The results reveal regional variation in the prevalence of protectionist policies, with Western, Eastern and Southern Asia emerging as the most protectionist, while regions like South America and Africa showed minimal engagement with such measures.
 
 Further research is necessary to expand the model devised here. Three possible approaches would be to include country-level analyses, time series analyses, and other correlational assessments, such as investigating the correlation between the maturity of the AI sector in a country and its level of protectionism. Regarding the model itself, it would be crucial to pursue higher levels of robustness; one option would be to invert what was done in section 3.2. Instead of using the GTA dataset to infer which policy is protectionist, one could use the DPA dataset to infer whether a policy is related to the AI sector, and then deploy it to identify which policies are related to the sector in the GTA dataset. However, an important limitation for this approach is that it does not quantify the intensity of the protectionist policy adopted: whether it is a 100% tariff or a 5% tariff on a certain product, it still counts as the same. 
