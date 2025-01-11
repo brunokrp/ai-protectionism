@@ -59,7 +59,9 @@ Since the position of a country in the “AI race” should influence the polici
 5. The level of fiscal restriction - General government debt (% of GDP), IMF, 2023
 6. The level of national investment - Gross capital formation (% of GDP), World Bank, 2023
 
-By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow method to define the optimal number of clusters, five main clusters were found, which are highlighted below. All following analyses will use both clusters and geographic regions to group similar countries. 
+By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow and silhouette methods to define the optimal number of clusters, five main clusters were found, which are highlighted below: 
+
+All following analyses will use both clusters and geographic regions to group similar countries. 
 
 ## **4) Identifying protectionist policies through text analysis**
 The first part of the project uses tools such as TF-IDF and Topic modeling to understand the patterns used in AI policy texts more broadly. Then, a text classification model was developed to identify specific protectionist AI policies. 
@@ -84,7 +86,10 @@ The Global Trade Alert dataset available for download on the institution's websi
 #### **4.2.2) Fine-tuning a distilBERT model**
 [The notebook is available here](https://github.com/brunokrp/ai-protectionism/blob/main/model_classification.ipynb)
 
-Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, with an overall F-1 score of 0,98 on the test dataset. The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
+Inspired by the approach taken by Juhász[2], policy texts labeled as protectionist (red) or non-protectionist (green or amber) were used to fine-tune a pre-trained model, enabling it to detect nuanced economic language patterns. The fine-tuned model was successful in predicting labels on the GTA dataset, achieving the following classification metrics: 
+[ENTER CONFUSION MATRIX HERE]
+
+The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Finally, GeoPandas - a Python library for geospatial data analysis - was used to visualize the distribution of protectionist AI policies globally on a world map, revealing regions with more significant concentrations of protectionist measures. 
 
 ## **5) Results**
 ### **5.1) TF-IDF and Topic Modeling**
