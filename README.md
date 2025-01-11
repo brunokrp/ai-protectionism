@@ -60,10 +60,19 @@ Since the position of a country in the “AI race” should influence the polici
 5. The level of fiscal restriction - General government debt (% of GDP), IMF, 2023
 6. The level of national investment - Gross capital formation (% of GDP), World Bank, 2023
 
-By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow and silhouette methods to define the optimal number of clusters, five main clusters were found, which are highlighted below: 
-![Image 1](image/clusters.png)
+By using those six main indicators, it is possible to group similar countries. Using a k-means clustering algorithm and the elbow and silhouette methods to define the optimal number of clusters, five main clusters were found. The cluster analysis excluded the US, China and India, because their inclusion created unwanted distortions. A separate cluster were created for each country, so the following analyses contain 8 clusters. Besides, all following analyses will also use geographic regions to group similar countries. 
 
-The cluster analysis excluded the US, China and India, because their inclusion created unwanted distortions. A separate cluster were created for each country, so the following analyses contain 8 clusters. Besides, all following analyses will also use geographic regions to group similar countries. 
+| Cluster | Countries                                                                                                                                                           |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0       | 🇰🇪 Kenya, 🇵🇰 Pakistan, 🇪🇬 Egypt                                                                                                                                |
+| 1       | 🇸🇪 Sweden, 🇮🇱 Israel, 🇮🇪 Ireland, 🇰🇷 Republic of Korea, 🇪🇸 Spain, 🇸🇬 Singapore, 🇫🇮 Finland, 🇩🇰 Denmark, 🇪🇪 Estonia, 🇳🇱 Netherlands, 🇸🇦 Saudi Arabia, 🇳🇿 New Zealand, 🇧🇪 Belgium, 🇦🇹 Austria, 🇦🇺 Australia, 🇳🇴 Norway, 🇨🇭 Switzerland, 🇱🇺 Luxembourg |
+| 2       | 🇫🇷 France, 🇩🇪 Germany, 🇨🇦 Canada, 🇬🇧 United Kingdom, 🇮🇹 Italy, 🇯🇵 Japan                                                                                   |
+| 3       | 🇸🇰 Slovakia, 🇦🇷 Argentina, 🇿🇦 South Africa, 🇱🇰 Sri Lanka, 🇹🇳 Tunisia, 🇦🇪 United Arab Emirates, 🇺🇾 Uruguay, 🇸🇮 Slovenia, 🇵🇹 Portugal, 🇲🇾 Malaysia, 🇨🇿 Czechia, 🇲🇦 Morocco, 🇲🇹 Malta, 🇦🇲 Armenia, 🇱🇹 Lithuania, 🇧🇭 Bahrain, 🇮🇸 Iceland, 🇭🇺 Hungary, 🇬🇷 Greece, 🇵🇱 Poland, 🇨🇴 Colombia, 🇨🇱 Chile |
+| 4       | 🇻🇳 Vietnam, 🇧🇷 Brazil, 🇷🇺 Russia, 🇮🇩 Indonesia, 🇲🇽 Mexico, 🇹🇷 Turkyie                                                                                     |
+| 5       | 🇮🇳 India                                                                                                                                                       |
+| 6       | 🇨🇳 China                                                                                                                                                       |
+| 7       | 🇺🇸 United States                                                                                                                                               |
+                                                                                   |
 
 ## **4) Identifying protectionist policies through text analysis**
 The first part of the project uses tools such as TF-IDF and Topic modeling to understand the patterns used in AI policy texts more broadly. Then, a text classification model was developed to identify specific protectionist AI policies. 
@@ -100,9 +109,9 @@ Besides, we also deployed SHAP values to analyze the model output for the test d
 ## **5) Results**
 ### **5.1) TF-IDF and Topic Modeling**
 The TF-IDF analysis in the images below reveal that regions like Eastern Asia, Southern Asia, Southern Europe, and Western Europe had "competition" as their top TF-IDF term. For North America, it was in the second position, losing only for "research". It is also interesting to notice that the top TF-IDF term for Middle and Southern Africa was China - which suggests growing mentions of Chinese action in the region - and that the continent was the only one with "cooperation" as one of their top 10 terms.
-![Image 1](tf_idf_region.png)
+![Image 1](image/tf_idf_region.png)
 
-![Image 1](tf_idf_cluster.png)
+![Image 1](image/tf_idf_cluster.png)
 
 The topic modeling approach revealed 8 main topics:
 - 🥷 Topic 1: Data protection - data protection personal information processing authority training privacy user consent
@@ -115,12 +124,12 @@ The topic modeling approach revealed 8 main topics:
 - 🗨️ Topic 8: Content generation - content platform generative generate medium online copyright work digital image
 
 Their distribution through regions follows the heatmap below:
-![Image 1](topic_region.png)
+![Image 1](image/topic_region.png)
 
 Topics 4 and 6 were the most prevalent among all regions, which shows the dual nature of AI - it is a major tool for economic development but poses risks that must be addressed by society. Topic 2 is the only one with close ties to protectionism, and its distribution among regions suggests that those concerns are more present in Europe. It is important to note, though, that topic 2 does not necessarily reflect protectionism, as the terms "competition", "trade", and "market" can also be used in liberalizing ways.
 
 Their distribution through clusters follows the heatmap below:
-![Image 1](topic_cluster.png)
+![Image 1](image/topic_cluster.png)
 
 ### **5.1) Classification model performance for the DPA dataset**
 The model was then applied to classify AI-related policy measures sourced from the Digital Policy Alert database. SHAP (SHapley Additive exPlanations) values were utilized to explain individual predictions, attributing importance to specific features or phrases in the text. This step provided transparency into the model’s decisions, highlighting keywords or contextual cues that influenced protectionist classifications. Here are two examples of protectionist policies labeled as so by the model, alongside a SHAP plot that reveals which words affected the classification. While neither explicitly mentions "competition" - and would not have been picked up by the previous analyses - the model identified other contextual clues that signaled protectionism, such as "export control", "safeguarding national security" and "merger control".
